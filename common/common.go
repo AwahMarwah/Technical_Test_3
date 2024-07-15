@@ -7,5 +7,6 @@ const (
 	SuccessfullyCreated        = "successfully created"
 	SuccessfullySignedIn       = "successfully signed in"
 	SuccessfullySignedOut      = "successfully signed out"
+	SuccessfullyUpdated        = "successfully updated"
 	UnexpectedNewline          = "unexpected newline"
 )

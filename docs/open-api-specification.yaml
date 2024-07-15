@@ -108,6 +108,27 @@ paths:
           $ref: "#/components/responses/404"
         500:
           $ref: "#/components/responses/500"  
+    put:
+      tags:
+        - Product
+      summary: Update
+      security:
+        - authorize: []
+      parameters:
+        - $ref: "#/components/parameters/id"
+      requestBody:
+        $ref: "#/components/requestBodies/productUpdate"
+      responses:
+        200:
+          $ref: "#/components/responses/200"
+        400:
+          $ref: "#/components/responses/400"
+        401:
+          $ref: "#/components/responses/401"
+        404:
+          $ref: "#/components/responses/404"
+        500:
+          $ref: "#/components/responses/500"
 components:
   securitySchemes:
     authorize:
@@ -161,6 +182,21 @@ components:
               description:
                 type: string
                 default: ""
+    productUpdate:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                default: ""
+              description:
+                type: string
+                default: ""
+              price:
+                type: number
+                default: 0
   responses:
     200:
       description: OK

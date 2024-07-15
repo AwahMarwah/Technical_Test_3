@@ -16,4 +16,15 @@ type (
 		Offset int
 		Page   int `form:"page"`
 	}
+
+	UpdateReq struct {
+		Body struct {
+			Name        string  `binding:"required"`
+			Description string  `binding:"required"`
+			Price       float64 `binding:"required"`
+		}
+		Path struct {
+			Id uint32 `binding:"required" uri:"id"`
+		}
+	}
 )

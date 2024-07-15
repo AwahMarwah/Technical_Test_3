@@ -10,6 +10,7 @@ type (
 		Create(product *productModel.Product) (err error)
 		List(reqQuery *productModel.ListReqQuery) (resData []productModel.ListResData, count int64, err error)
 		Take(selectParams []string, conditions *productModel.Product) (product productModel.Product, err error)
+		Update(id *uint32, values *map[string]any) (err error)
 	}
 
 	repo struct {

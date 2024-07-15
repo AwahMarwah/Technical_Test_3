@@ -10,6 +10,7 @@ type (
 		Create(reqBody *productModel.CreateReqBody) (err error)
 		Detail(reqPath *productModel.DetailReqPath) (resData productModel.DetailResData, statusCode int, err error)
 		List(reqQuery *productModel.ListReqQuery) (resData []productModel.ListResData, count int64, err error)
+		Update(req *productModel.UpdateReq) (statusCode int, err error)
 	}
 
 	service struct {

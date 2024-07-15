@@ -31,6 +31,7 @@ func Run(db database.DB) (err error) {
 		idGroup := productGroup.Group(":id")
 		{
 			idGroup.GET("", authorize(db.GormDb), productController.Detail)
+			idGroup.PUT("", authorize(db.GormDb), productController.Update)
 		}
 	}
 
