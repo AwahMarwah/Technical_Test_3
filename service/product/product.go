@@ -8,6 +8,7 @@ import (
 type (
 	IService interface {
 		Create(reqBody *productModel.CreateReqBody) (err error)
+		List(reqQuery *productModel.ListReqQuery) (resData []productModel.ListResData, count int64, err error)
 	}
 
 	service struct {

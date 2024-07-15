@@ -8,6 +8,7 @@ import (
 type (
 	IRepo interface {
 		Create(product *productModel.Product) (err error)
+		List(reqQuery *productModel.ListReqQuery) (resData []productModel.ListResData, count int64, err error)
 	}
 
 	repo struct {

@@ -52,7 +52,25 @@ paths:
           $ref: "#/components/responses/401"
         500:
           $ref: "#/components/responses/500"
-  /product/create:
+  /product:
+    get:
+      tags:
+        - Product
+      summary: List
+      security:
+        - authorize: []
+      parameters:
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/limit"
+      responses:
+        200:
+          $ref: "#/components/responses/productList"
+        400:
+          $ref: "#/components/responses/400"
+        401:
+          $ref: "#/components/responses/401"
+        500:
+          $ref: "#/components/responses/500"
     post:
       tags:
         - Product
@@ -75,6 +93,19 @@ components:
     authorize:
       type: http
       scheme: bearer
+  parameters:
+    limit:
+      in: query
+      name: limit
+      schema:
+        type: integer
+        default: 10
+    page:
+      in: query
+      name: page
+      schema:
+        type: integer
+        default: 1
   requestBodies:
     authSignIn:
       content:
@@ -177,3 +208,41 @@ components:
               message:
                 type: string
                 default: OK
+    productList:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    description:
+                      type: string
+                      default: ""
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                      default: ""
+                    price:
+                      type: number
+                      default: 0
+                    created_at:
+                      type: string
+                      default: ""
+              message:
+                type: string
+                default: OK
+              page:
+                type: object
+                properties:
+                  current:
+                    type: integer
+                  size:
+                    type: integer
+                  total:
+                    type: integer

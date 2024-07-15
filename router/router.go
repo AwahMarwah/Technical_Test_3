@@ -26,7 +26,8 @@ func Run(db database.DB) (err error) {
 	productGroup := router.Group("product")
 	{
 		productController := product.NewController(db.GormDb)
-		productGroup.POST("create", authorize(db.GormDb), productController.Create)
+		productGroup.GET("", authorize(db.GormDb), productController.List)
+		productGroup.POST("", authorize(db.GormDb), productController.Create)
 	}
 
 	return router.Run()
