@@ -1,0 +1,60 @@
+openapi: 3.0.3
+info:
+  title: Ecommerce
+  description: This is a RESTful API documentation.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+paths:
+  /:
+    get:
+      tags:
+        - Default
+      summary: Root
+      responses:
+        200:
+          $ref: "#/components/responses/200"
+  /health:
+    get:
+      tags:
+        - Default
+      summary: Health Check
+      responses:
+        200:
+          $ref: "#/components/responses/200"
+        500:
+          $ref: "#/components/responses/500"
+components:
+  securitySchemes:
+    authorize:
+      type: http
+      scheme: bearer
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: string
+                nullable: true
+                default: null
+              message:
+                type: string
+                default: OK
+    500:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: string
+                nullable: true
+                default: null
+              message:
+                type: string
+                default: Internal Server Error
