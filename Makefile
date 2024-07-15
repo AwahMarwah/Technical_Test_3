@@ -6,3 +6,6 @@ run_db_migrate_up:
 
 run_db_migrate_down:
 	go run database/migrate/down/down.go
+
+run_db_seed_user:
+	go run database/seed/user/user.go
