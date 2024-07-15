@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Ecommerce
+  title: Simple Ecommerce
   description: This is a RESTful API documentation.
   version: 1.0.0
 servers:
@@ -24,11 +24,39 @@ paths:
           $ref: "#/components/responses/200"
         500:
           $ref: "#/components/responses/500"
+  /auth/sign-in:
+    post:
+      tags:
+        - Auth
+      summary: Sign in
+      requestBody:
+        $ref: "#/components/requestBodies/authSignIn"
+      responses:
+        200:
+          $ref: "#/components/responses/authSignIn"
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
 components:
   securitySchemes:
     authorize:
       type: http
       scheme: bearer
+  requestBodies:
+    authSignIn:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                default: ""
+              password:
+                type: string
+                default: ""
+                minLength: 8
   responses:
     200:
       description: OK
@@ -44,6 +72,20 @@ components:
               message:
                 type: string
                 default: OK
+    400:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: string
+                nullable: true
+                default: null
+              message:
+                type: string
+                default: Bad Request
     500:
       description: Internal Server Error
       content:
@@ -58,3 +100,19 @@ components:
               message:
                 type: string
                 default: Internal Server Error
+    authSignIn:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    default: ""
+              message:
+                type: string
+                default: OK
