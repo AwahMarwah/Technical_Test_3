@@ -7,6 +7,10 @@ type (
 		Description string
 	}
 
+	DetailReqPath struct {
+		Id uint32 `binding:"required" uri:"id"`
+	}
+
 	ListReqQuery struct {
 		Limit  int `form:"limit"`
 		Offset int

@@ -9,6 +9,7 @@ type (
 	IRepo interface {
 		Create(product *productModel.Product) (err error)
 		List(reqQuery *productModel.ListReqQuery) (resData []productModel.ListResData, count int64, err error)
+		Take(selectParams []string, conditions *productModel.Product) (product productModel.Product, err error)
 	}
 
 	repo struct {

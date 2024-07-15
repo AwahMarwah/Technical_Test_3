@@ -87,13 +87,39 @@ paths:
         401:
           $ref: "#/components/responses/401"
         500:
-          $ref: "#/components/responses/500"    
+          $ref: "#/components/responses/500"  
+  /product/{id}:
+    get:
+      tags:
+        - Product
+      summary: Detail
+      security:
+        - authorize: []
+      parameters:
+        - $ref: "#/components/parameters/id"
+      responses:
+        200:
+          $ref: "#/components/responses/productDetail"
+        400:
+          $ref: "#/components/responses/400"
+        401:
+          $ref: "#/components/responses/401"
+        404:
+          $ref: "#/components/responses/404"
+        500:
+          $ref: "#/components/responses/500"  
 components:
   securitySchemes:
     authorize:
       type: http
       scheme: bearer
   parameters:
+    id:
+      in: path
+      name: id
+      schema:
+        type: integer
+      required: true
     limit:
       in: query
       name: limit
@@ -178,6 +204,20 @@ components:
               message:
                 type: string
                 default: Unauthorized
+    404:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: string
+                nullable: true
+                default: null
+              message:
+                type: string
+                default: Not Found
     500:
       description: Internal Server Error
       content:
@@ -205,6 +245,31 @@ components:
                   token:
                     type: string
                     default: ""
+              message:
+                type: string
+                default: OK
+    productDetail:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  created_at:
+                    type: string
+                    default: ""
+                  description:
+                    type: string
+                    default: ""
+                  name:
+                    type: string
+                    default: ""
+                  price:
+                    type: number
+                    default: 0
               message:
                 type: string
                 default: OK
