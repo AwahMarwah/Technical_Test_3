@@ -1,6 +1,8 @@
 package encrypt
 
 import (
+	"strings"
+
 	"github.com/dgrijalva/jwt-go"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -21,4 +23,15 @@ func GenerateFromPassword(password *string) (err error) {
 func NewTokenWithClaims(claims jwt.Claims) (token string, err error) {
 	claimsToken := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	return claimsToken.SignedString([]byte("simple_ecommerce"))
+}
+
+func Parse(token string) (tokenRaw string, claims jwt.MapClaims, err error) {
+	tokenString := strings.ReplaceAll(token, "Bearer ", "")
+	jwtToken, err := jwt.Parse(tokenString, func(token *jwt.Token) (any, error) {
+		return []byte("simple_ecommerce"), nil
+	})
+	if err != nil {
+		return
+	}
+	return jwtToken.Raw, jwtToken.Claims.(jwt.MapClaims), nil
 }

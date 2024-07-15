@@ -38,6 +38,20 @@ paths:
           $ref: "#/components/responses/400"
         500:
           $ref: "#/components/responses/500"
+  /auth/sign-out:
+    delete:
+      tags:
+        - Auth
+      summary: Sign out
+      security:
+        - authorize: []
+      responses:
+        200:
+          $ref: "#/components/responses/200"
+        401:
+          $ref: "#/components/responses/401"
+        500:
+          $ref: "#/components/responses/500"
 components:
   securitySchemes:
     authorize:
@@ -86,6 +100,20 @@ components:
               message:
                 type: string
                 default: Bad Request
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: string
+                nullable: true
+                default: null
+              message:
+                type: string
+                default: Unauthorized
     500:
       description: Internal Server Error
       content:

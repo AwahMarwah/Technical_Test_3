@@ -20,6 +20,7 @@ func Run(db database.DB) (err error) {
 	{
 		authController := auth.NewController(db.GormDb)
 		authGroup.POST("sign-in", authController.SignIn)
+		authGroup.DELETE("sign-out", authorize(db.GormDb), authController.SignOut)
 	}
 
 	return router.Run()

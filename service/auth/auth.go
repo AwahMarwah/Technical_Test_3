@@ -7,7 +7,9 @@ import (
 
 type (
 	IService interface {
+		Authorize(token *string) (userId uint32, statusCode int, err error)
 		SignIn(reqBody *authModel.SignInReqBody) (resData authModel.SignInResData, statusCode int, err error)
+		SignOut(userId uint32) (err error)
 	}
 
 	service struct {
