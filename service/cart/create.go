@@ -2,7 +2,6 @@ package cart
 
 import (
 	"errors"
-	"log"
 
 	"github.com/AwahMarwah/Technical_Test_3/common"
 	cartModel "github.com/AwahMarwah/Technical_Test_3/model/cart"
@@ -18,10 +17,9 @@ func (s *service) Create(reqBody *cartModel.CreateReqBody) (err error) {
 		}
 		return err
 	}
-	log.Println(reqBody)
-	// _, err = s.cartRepo.Create(reqBody)
-	// if err != nil {
-	// 	return err
-	// }
+	_, err = s.cartRepo.Create(reqBody)
+	if err != nil {
+		return err
+	}
 	return
 }
