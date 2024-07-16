@@ -16,7 +16,8 @@ type (
 	ListReqQuery struct {
 		Limit  int `form:"limit"`
 		Offset int
-		Page   int `form:"page"`
+		Page   int    `form:"page"`
+		Status string `binding:"oneof=active checkout" form:"status"`
 	}
 
 	UpdateReqPath struct {

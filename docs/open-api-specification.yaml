@@ -139,6 +139,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/page"
         - $ref: "#/components/parameters/limit"
+        - $ref: "#/components/parameters/status"
       responses:
         200:
           $ref: "#/components/responses/cartList"
@@ -209,6 +210,13 @@ components:
       schema:
         type: integer
         default: 1
+    status:
+      in : query
+      name: status
+      schema:
+        type: string
+        default: "active"
+      description: Can be one of "active" OR "checkout".
   requestBodies:
     authSignIn:
       content:
