@@ -130,6 +130,24 @@ paths:
         500:
           $ref: "#/components/responses/500"
   /cart:
+    get:
+      tags:
+        - Cart
+      summary: List
+      security:
+        - authorize: []
+      parameters:
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/limit"
+      responses:
+        200:
+          $ref: "#/components/responses/cartList"
+        400:
+          $ref: "#/components/responses/400"
+        401:
+          $ref: "#/components/responses/401"
+        500:
+          $ref: "#/components/responses/500"
     post:
       tags:
         - Cart
@@ -322,6 +340,45 @@ components:
               message:
                 type: string
                 default: OK
+    cartList:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    user_id:
+                      type: integer
+                    cartItems:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          product_id:
+                            type: integer
+                          quantity:
+                            type: number
+              message:
+                type: string
+                default: OK
+              page:
+                type: object
+                properties:
+                  current:
+                    type: integer
+                  size:
+                    type: integer
+                  total:
+                    type: integer
     productDetail:
       description: OK
       content:
