@@ -39,6 +39,7 @@ func Run(db database.DB) (err error) {
 	{
 		cartController := cart.NewController(db.GormDb)
 		cartGroup.POST("", authorize(db.GormDb), cartController.Create)
+		cartGroup.GET("", authorize(db.GormDb), cartController.List)
 		
 	}
 

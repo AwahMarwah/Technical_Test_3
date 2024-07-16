@@ -8,6 +8,8 @@ import (
 type (
 	IRepo interface {
 		Create(reqBody *cartModel.CreateReqBody) (cartModel.Cart, error)
+		List(reqQuery *cartModel.ListReqQuery) (resData []cartModel.ListCartResData, count int64, err error)
+		ListCartItem(id uint32) (resData []cartModel.CartItem, err error)
 	}
 
 	repo struct {
