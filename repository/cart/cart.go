@@ -10,6 +10,8 @@ type (
 		Create(reqBody *cartModel.CreateReqBody) (cartModel.Cart, error)
 		List(reqQuery *cartModel.ListReqQuery) (resData []cartModel.ListCartResData, count int64, err error)
 		ListCartItem(id uint32) (resData []cartModel.CartItem, err error)
+		Take(selectParams []string, conditions *cartModel.Cart) (cart cartModel.Cart, err error)
+		Update(id *uint32, values *map[string]any) (err error)
 	}
 
 	repo struct {

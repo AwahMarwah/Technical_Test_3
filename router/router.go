@@ -40,7 +40,10 @@ func Run(db database.DB) (err error) {
 		cartController := cart.NewController(db.GormDb)
 		cartGroup.POST("", authorize(db.GormDb), cartController.Create)
 		cartGroup.GET("", authorize(db.GormDb), cartController.List)
-		
+		idGroup := cartGroup.Group(":id")
+		{
+			idGroup.PUT("", authorize(db.GormDb), cartController.Update)
+		}
 	}
 
 	return router.Run()

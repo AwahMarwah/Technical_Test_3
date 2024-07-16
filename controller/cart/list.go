@@ -5,12 +5,12 @@ import (
 
 	"github.com/AwahMarwah/Technical_Test_3/library/pagination"
 	"github.com/AwahMarwah/Technical_Test_3/library/response"
-	productModel "github.com/AwahMarwah/Technical_Test_3/model/cart"
+	cartModel "github.com/AwahMarwah/Technical_Test_3/model/cart"
 	"github.com/gin-gonic/gin"
 )
 
 func (c *controller) List(ctx *gin.Context) {
-	var reqQuery productModel.ListReqQuery
+	var reqQuery cartModel.ListReqQuery
 	if err := ctx.ShouldBindQuery(&reqQuery); err != nil {
 		response.Error(ctx, http.StatusBadRequest, err.Error())
 		return

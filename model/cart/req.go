@@ -18,4 +18,8 @@ type (
 		Offset int
 		Page   int `form:"page"`
 	}
+
+	UpdateReqPath struct {
+		Id uint32 `binding:"required" uri:"id"`
+	}
 )
