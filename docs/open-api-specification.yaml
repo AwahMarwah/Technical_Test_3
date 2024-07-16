@@ -129,6 +129,24 @@ paths:
           $ref: "#/components/responses/404"
         500:
           $ref: "#/components/responses/500"
+  /cart:
+    post:
+      tags:
+        - Cart
+      summary: Create
+      security:
+        - authorize: []
+      requestBody:
+        $ref: "#/components/requestBodies/cartCreate"
+      responses:
+        200:
+          $ref: "#/components/responses/200"
+        400:
+          $ref: "#/components/responses/400"
+        401:
+          $ref: "#/components/responses/401"
+        500:
+          $ref: "#/components/responses/500"      
 components:
   securitySchemes:
     authorize:
@@ -167,6 +185,26 @@ components:
                 type: string
                 default: ""
                 minLength: 8
+    cartCreate:
+       content:
+        application/json:
+          schema:
+            type: object
+            properties:
+               user_id:
+                type: integer
+                default: 1
+               cart_items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    product_id:
+                      type: integer
+                      default: 0
+                    quantity:
+                      type: number
+                      default: 0
     productCreate:
        content:
         application/json:

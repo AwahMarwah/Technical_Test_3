@@ -1,0 +1,28 @@
+package cart
+
+import (
+	cartModel "github.com/AwahMarwah/Technical_Test_3/model/cart"
+	"github.com/AwahMarwah/Technical_Test_3/repository/cart"
+	productRepo "github.com/AwahMarwah/Technical_Test_3/repository/product"
+	userRepo "github.com/AwahMarwah/Technical_Test_3/repository/user"
+)
+
+type (
+	IService interface {
+		Create(reqBody *cartModel.CreateReqBody) (err error)
+	}
+
+	service struct {
+		cartRepo    cart.IRepo
+		userRepo    userRepo.IRepo
+		productRepo productRepo.IRepo
+	}
+)
+
+func NewService(cartRepo cart.IRepo, userRepo userRepo.IRepo, productRepo productRepo.IRepo) IService {
+	return &service{
+		cartRepo:    cartRepo,
+		userRepo:    userRepo,
+		productRepo: productRepo,
+	}
+}

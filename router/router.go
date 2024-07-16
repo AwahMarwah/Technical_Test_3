@@ -2,6 +2,7 @@ package router
 
 import (
 	"github.com/AwahMarwah/Technical_Test_3/controller/auth"
+	"github.com/AwahMarwah/Technical_Test_3/controller/cart"
 	"github.com/AwahMarwah/Technical_Test_3/controller/health"
 	"github.com/AwahMarwah/Technical_Test_3/controller/product"
 	"github.com/AwahMarwah/Technical_Test_3/controller/root"
@@ -33,6 +34,12 @@ func Run(db database.DB) (err error) {
 			idGroup.GET("", authorize(db.GormDb), productController.Detail)
 			idGroup.PUT("", authorize(db.GormDb), productController.Update)
 		}
+	}
+	cartGroup := router.Group("cart")
+	{
+		cartController := cart.NewController(db.GormDb)
+		cartGroup.POST("", authorize(db.GormDb), cartController.Create)
+		
 	}
 
 	return router.Run()
