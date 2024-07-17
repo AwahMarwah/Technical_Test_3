@@ -167,6 +167,25 @@ paths:
         500:
           $ref: "#/components/responses/500"    
   /cart/{id}:
+    get:
+      tags:
+        - Cart
+      summary: Detail
+      security:
+        - authorize: []
+      parameters:
+        - $ref: "#/components/parameters/id"
+      responses:
+        200:
+          $ref: "#/components/responses/cartDetail"
+        400:
+          $ref: "#/components/responses/400"
+        401:
+          $ref: "#/components/responses/401"
+        404:
+          $ref: "#/components/responses/404"
+        500:
+          $ref: "#/components/responses/500" 
     put:
       tags:
         - Cart
@@ -365,6 +384,38 @@ components:
                   token:
                     type: string
                     default: ""
+              message:
+                type: string
+                default: OK
+    cartDetail:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    default: ""
+                  user_id:
+                    type: string
+                    default: ""
+                  total_of_payment:
+                    type: number
+                  cartItems:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          product_id:
+                            type: integer
+                          quantity:
+                            type: number
               message:
                 type: string
                 default: OK

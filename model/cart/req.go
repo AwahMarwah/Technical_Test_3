@@ -2,10 +2,11 @@ package cart
 
 type (
 	CartItem struct {
-		Id        uint32 `json:"id"`
-		CartId    uint32 `json:"cart_id"`
-		ProductId uint32 `json:"product_id"`
-		Quantity  uint32 `json:"quantity"`
+		Id        uint32  `json:"id"`
+		CartId    uint32  `json:"cart_id"`
+		ProductId uint32  `json:"product_id"`
+		Quantity  uint32  `json:"quantity"`
+		Price     float64 `json:"price"`
 	}
 
 	CreateReqBody struct {
@@ -21,6 +22,10 @@ type (
 	}
 
 	UpdateReqPath struct {
+		Id uint32 `binding:"required" uri:"id"`
+	}
+
+	ReqPath struct {
 		Id uint32 `binding:"required" uri:"id"`
 	}
 )
