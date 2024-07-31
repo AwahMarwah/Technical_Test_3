@@ -1,2 +1,2 @@
-# Technical_Test_3
+# E-Commerce
 Case 3 : aplikasi ecommerce sederhana
