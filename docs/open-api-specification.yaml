@@ -205,6 +205,42 @@ paths:
           $ref: "#/components/responses/404"
         500:
           $ref: "#/components/responses/500"
+  /user:
+    get:
+      tags:
+        - User
+      summary: List
+      security:
+        - authorize: []
+      parameters:
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/limit"
+      responses:
+        200:
+          $ref: "#/components/responses/userList"
+        400:
+          $ref: "#/components/responses/400"
+        401:
+          $ref: "#/components/responses/401"
+        500:
+          $ref: "#/components/responses/500"
+    post:
+      tags:
+        - User
+      summary: Create
+      security:
+        - authorize: []
+      requestBody:
+        $ref: "#/components/requestBodies/userCreate"
+      responses:
+        200:
+          $ref: "#/components/responses/200"
+        400:
+          $ref: "#/components/responses/400"
+        401:
+          $ref: "#/components/responses/401"
+        500:
+          $ref: "#/components/responses/500"         
 components:
   securitySchemes:
     authorize:
@@ -300,6 +336,15 @@ components:
               price:
                 type: number
                 default: 0
+    userCreate: 
+       content:
+        application/json:
+          schema:
+            type: object
+            properties:
+               email:
+                 type: string
+                 default: ""
   responses:
     200:
       description: OK
@@ -506,6 +551,38 @@ components:
                     price:
                       type: number
                       default: 0
+                    created_at:
+                      type: string
+                      default: ""
+              message:
+                type: string
+                default: OK
+              page:
+                type: object
+                properties:
+                  current:
+                    type: integer
+                  size:
+                    type: integer
+                  total:
+                    type: integer
+    userList:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    email:
+                      type: string
+                      default: ""
                     created_at:
                       type: string
                       default: ""
