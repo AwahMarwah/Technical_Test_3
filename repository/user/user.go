@@ -8,6 +8,7 @@ import (
 type (
 	IRepo interface {
 		Create(user *userModel.User) (err error)
+		List(reqQuery *userModel.ListReqQuery) (resData []userModel.ListUser, count int64, err error)
 		Take(selectParams []string, conditions *userModel.User) (user userModel.User, err error)
 		Update(id *uint32, values *map[string]any) (err error)
 	}
