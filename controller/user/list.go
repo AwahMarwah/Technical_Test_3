@@ -1,7 +1,6 @@
 package user
 
 import (
-	"log"
 	"net/http"
 
 	"github.com/AwahMarwah/Technical_Test_3/library/pagination"
@@ -17,7 +16,6 @@ func (c *controller) List(ctx *gin.Context) {
 		return
 	}
 	reqQuery.Offset = pagination.Offset(&reqQuery.Limit, &reqQuery.Page)
-	log.Println(reqQuery)
 	resData, count, err := c.userService.List(&reqQuery)
 	if err != nil {
 		response.Error(ctx, http.StatusInternalServerError, err.Error())
