@@ -240,7 +240,27 @@ paths:
         401:
           $ref: "#/components/responses/401"
         500:
-          $ref: "#/components/responses/500"         
+          $ref: "#/components/responses/500" 
+  /user/{id}:
+    get:
+      tags:
+        - User
+      summary: Detail
+      security:
+        - authorize: []
+      parameters:
+         - $ref: "#/components/parameters/id"
+      responses:
+        200:
+          $ref: "#/components/responses/userDetail"
+        400:
+          $ref: "#/components/responses/400"
+        401:
+          $ref: "#/components/responses/401"
+        404:
+          $ref: "#/components/responses/404"
+        500:
+          $ref: "#/components/responses/500" 
 components:
   securitySchemes:
     authorize:
@@ -566,6 +586,28 @@ components:
                     type: integer
                   total:
                     type: integer
+    userDetail:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    default: ""
+                  email:
+                    type: string
+                    default: ""
+                  created_at:
+                    type: string
+                    default: ""
+              message:
+                type: string
+                default: OK
     userList:
       description: OK
       content:

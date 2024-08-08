@@ -52,6 +52,10 @@ func Run(db database.DB) (err error) {
 		userController := user.NewController(db.GormDb)
 		userGroup.POST("", authorize(db.GormDb), userController.Create)
 		userGroup.GET("", authorize(db.GormDb), userController.List)
+		idGroup := userGroup.Group(":id")
+		{
+			idGroup.GET("", authorize(db.GormDb), userController.Detail)
+		}
 	}
 
 	return router.Run()

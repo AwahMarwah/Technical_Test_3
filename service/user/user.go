@@ -8,6 +8,7 @@ import (
 type (
 	IService interface {
 		Create(reqBody *userModel.CreateReq) (err error)
+		Detail(reqPath *userModel.ReqPath) (resData userModel.DetailUserResData, statusCod int, err error)
 		List(reqQuery *userModel.ListReqQuery) (resData []userModel.ListUser, count int64, err error)
 		Seed(req *userModel.SeedReq) (err error)
 	}

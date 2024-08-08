@@ -10,6 +10,9 @@ type (
 		Offset int
 		Page   int `form:"page"`
 	}
+	ReqPath struct {
+		Id uint32 `binding:"required" uri:"id"`
+	}
 	SeedReq struct {
 		Email    string `validate:"email"`
 		Password string `validate:"gte=8"`
